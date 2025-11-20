@@ -8,6 +8,7 @@ export default function ExportButtons({
   budget,
   pieChartRef,
   barChartRef,
+  className = "",
 }) {
   /* --------------------------
       CSV EXPORT
@@ -91,7 +92,7 @@ export default function ExportButtons({
   }
 
   return (
-    <div className="card">
+    <div className={`card ${className}`.trim()}>
       <h3>Export Reports</h3>
 
       <div className="export-buttons">

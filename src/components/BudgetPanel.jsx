@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { collection, addDoc, doc, setDoc, query, where, getDocs } from 'firebase/firestore'
-import { db } from '../firebase'
-import { useAuth } from '../contexts/AuthContext'
+import React, { useEffect, useState } from "react";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { useAuth } from "../contexts/AuthContext";
 
-export default function BudgetPanel({ budget, setBudget }) {
+export default function BudgetPanel({ budget, setBudget, className = "" }) {
   const [input, setInput] = useState(budget || 0)
   const [saving, setSaving] = useState(false)
   const { currentUser } = useAuth()
@@ -42,25 +42,25 @@ export default function BudgetPanel({ budget, setBudget }) {
   }
 
   return (
-    <div className="card">
-      <h3 className='text-2xl font-bold text-green-400'>Monthly Budget</h3>
+    <div className={`insight-card ${className}`.trim()}>
+      <div className="insight-card__body">
+        <div className="insight-label">Monthly Budget</div>
+        <h3 className="insight-amount">₦{Number(budget || 0).toFixed(2)}</h3>
 
-      <form className="budget-form gap-2 flex" onSubmit={handleSave}>
-        <input
-          type="number"
-          min="0"
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          placeholder="Set budget (₦)"
-          className='w-90'
-        />
+        <form className="budget-form" onSubmit={handleSave}>
+          <input
+            type="number"
+            min="0"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Set budget (₦)"
+          />
 
-        <button type="submit" disabled={saving}>
-          {saving ? 'Saving...' : 'Save'}
-        </button>
-      </form>
- 
-      <p className='text-3xl font-bold  text-green-400'>Current budget: ₦{Number(budget || 0).toFixed(2)}</p>
+          <button type="submit" disabled={saving}>
+            {saving ? "Saving..." : "Save"}
+          </button>
+        </form>
+      </div>
     </div>
-  )
+  );
 }
