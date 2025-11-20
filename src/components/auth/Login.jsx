@@ -30,7 +30,7 @@ export default function Login() {
 
       // ❗ LOGIN — AuthContext handles email verification check
       await login(form.email, form.password);
-
+      
       navigate("/"); // success → go dashboard
     } catch (err) {
       console.error("Login error:", err);

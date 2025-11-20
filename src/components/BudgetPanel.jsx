@@ -12,7 +12,7 @@ export default function BudgetPanel({ budget, setBudget }) {
     setInput(budget || 0)
   }, [budget])
 
-  async function handleSave(e) {
+   async function handleSave(e) {
     e.preventDefault()
     if (!currentUser) return alert("User not logged in")
 
@@ -21,22 +21,17 @@ export default function BudgetPanel({ budget, setBudget }) {
     try {
       const userId = currentUser.uid
 
-      // Search if this user already has a budget doc
-      const q = query(collection(db, 'budgets'), where('userId', '==', userId))
-      const snapshot = await getDocs(q)
-
-      if (!snapshot.empty) {
-        // Update existing document
-        const ref = doc(db, 'budgets', snapshot.docs[0].id)
-        await setDoc(ref, { userId, amount: Number(input) }, { merge: true })
-      } else {
-        // Create new budget document
-        await addDoc(collection(db, 'budgets'), {
+      // SAVE BUDGET TO A DOCUMENT NAMED AFTER USER ID
+      await setDoc(
+        doc(db, "budgets", userId),
+        {
           userId,
-          amount: Number(input),
-        })
-      }
+          amount: Number(input)
+        },
+        { merge: true }
+      )
 
+      // UPDATE UI IMMEDIATELY
       setBudget(Number(input))
 
     } catch (error) {

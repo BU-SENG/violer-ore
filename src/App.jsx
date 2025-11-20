@@ -9,8 +9,7 @@ import { useLocation } from "react-router-dom";
 
 function PrivateRoute({ children }) {
   const { currentUser } = useAuth();
-  //removed the !
-  if (currentUser) return <Navigate to="/login" replace />;
+  if (!currentUser) return <Navigate to="/login" replace />;
   return children;
 }
 

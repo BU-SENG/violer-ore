@@ -23,6 +23,7 @@ export default function Dashboard() {
   const [transactions, setTransactions] = useState([]);
   const [budget, setBudget] = useState(0);
   const [editTransaction, setEditTransaction] = useState(null);
+  const [monthlyIncome, setMonthlyIncome] = useState(0);
 
   /* ----------------------------------------------------------
       📌 CHART REFS FOR PDF EXPORT
@@ -42,20 +43,17 @@ export default function Dashboard() {
       orderBy("createdAt", "desc")
     );
 
-    const unsubscribe = onSnapshot(
-      q,
-      (snapshot) => {
-        const docs = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setTransactions(docs);
-      },
-      (error) => console.error("🔥 Transaction listener error:", error)
-    );
+     const unsubscribe = onSnapshot(q, (snapshot) => {
+    const docs = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setTransactions(docs);
+  });
 
-    return unsubscribe;
-  }, [currentUser]);
+  return unsubscribe;
+}, [currentUser]);
+
 
   /* ----------------------------------------------------------
       🔥 REAL-TIME BUDGET LISTENER
@@ -82,19 +80,15 @@ export default function Dashboard() {
   /* ----------------------------------------------------------
       🔥 REAL-TIME MONTHLY INCOME LISTENER
   ---------------------------------------------------------- */
-  const [monthlyIncome, setMonthlyIncome] = useState(0);
 
   useEffect(() => {
     if (!currentUser) return;
 
-    const q = query(
-      collection(db, "monthlyIncome"),
-      where("userId", "==", currentUser.uid)
-    );
+    const ref = doc(db, "monthlyIncome", currentUser.uid);
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      if (!snapshot.empty) {
-        setMonthlyIncome(snapshot.docs[0].data().amount || 0);
+    const unsubscribe = onSnapshot(ref, (snapshot) => {
+      if (snapshot.exists()) {
+        setMonthlyIncome(snapshot.data().amount || 0);
       } else {
         setMonthlyIncome(0);
       }
@@ -102,6 +96,7 @@ export default function Dashboard() {
 
     return unsubscribe;
   }, [currentUser]);
+
 
   /* ----------------------------------------------------------
       💰 TOTALS
@@ -173,6 +168,7 @@ export default function Dashboard() {
     />
      <MonthlyIncomePanel
       income={monthlyIncome}
+      setMonthlyIncome={setMonthlyIncome}
       userId={currentUser?.uid}
     />
   </div>
@@ -183,7 +179,7 @@ export default function Dashboard() {
 
 </section>
 
-
+ {/* MAIN LAYOUT */}
       <section className="layout">
 
         {/* LEFT SIDE — FORM + TABLE */}
@@ -201,12 +197,10 @@ export default function Dashboard() {
         </div>
 
         {/* RIGHT SIDE — CHARTS + EXPORTS */}
-        <div className="right">
+         <div className="right">
 
-          {/* GRID OF TWO CHARTS */}
           <div className="charts-section">
 
-            {/* BAR CHART */}
             <div className="chart-card" ref={barChartRef}>
               <h3>Income vs Expense</h3>
               <div className="chart-container">
@@ -214,7 +208,6 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* PIE CHART */}
             <div className="chart-card" ref={pieChartRef}>
               <h3>Expense Breakdown</h3>
               <div className="chart-container">
@@ -224,13 +217,15 @@ export default function Dashboard() {
 
           </div>
 
-          {/* EXPORT BUTTONS */}
           <ExportButtons
-            transactions={transactions}
-            totals={totals}
-            pieChartRef={pieChartRef}
-            barChartRef={barChartRef}
-          />
+  transactions={transactions}
+  totals={totals}
+  monthlyIncome={monthlyIncome}
+  budget={budget}
+  pieChartRef={pieChartRef}
+  barChartRef={barChartRef}
+/>
+
 
         </div>
       </section>

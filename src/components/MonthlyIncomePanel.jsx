@@ -1,22 +1,49 @@
 import React, { useState } from "react";
-import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-export default function MonthlyIncomePanel({ income, userId }) {
+export default function MonthlyIncomePanel({
+  monthlyIncome,
+  setMonthlyIncome,
+  userId,
+}) {
   const [value, setValue] = useState("");
 
+  // Always reflect the latest saved value
+  useEffect(() => {
+    setValue(monthlyIncome || "");
+  }, [monthlyIncome]);
+
   async function saveIncome() {
-    if (!value || !userId) return;
+    if (!value) {
+      alert("Please enter an income amount.");
+      return;
+    }
+    if (!userId) {
+      alert("User not logged in.");
+      return;
+    }
 
-    const ref = collection(db, "monthlyIncome");
+    try {
+      // One stable doc per user: monthlyIncome/{uid}
+      const ref = doc(db, "monthlyIncome", userId);
 
-    await addDoc(ref, {
-      amount: Number(value),
-      userId,
-      createdAt: new Date(),
-    });
+      await setDoc(
+        ref,
+        {
+          userId,                 // must be present in the doc
+          amount: Number(value),
+          updatedAt: new Date(),
+        },
+        { merge: true }
+      );
 
-    setValue("");
+      setMonthlyIncome(Number(value));
+      alert("Monthly income saved!");
+    } catch (error) {
+      console.error("Error saving income:", error.code, error.message);
+      alert("Failed to save income: " + error.code);
+    }
   }
 
   return (
@@ -32,12 +59,14 @@ export default function MonthlyIncomePanel({ income, userId }) {
         className="w-90"
       />
 
-      <button onClick={saveIncome}>Save</button>
+       <button type="button" onClick={saveIncome}>
+        Save
+      </button>
 
       </div>
       <p className='text-3xl font-bold text-green-400' style={{ marginTop: "8px" }}>
         Current monthly income:
-        <strong style={{ marginLeft: 6 }}>₦{income.toFixed(2)}</strong>
+        <strong>₦{Number(monthlyIncome || 0).toFixed(2)}</strong>
       </p>
     </div>
   );
