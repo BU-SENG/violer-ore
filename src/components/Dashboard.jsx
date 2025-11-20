@@ -98,13 +98,18 @@ export default function Dashboard() {
   }, [currentUser]);
 
 
-  /* ----------------------------------------------------------
-      💰 TOTALS
-  ---------------------------------------------------------- */
+
+   async function handleDelete(id) {
+    try {
+      await deleteDoc(doc(db, "transactions", id));
+    } catch (error) {
+      console.error("🔥 Delete error:", error);
+      alert("Failed to delete transaction.");
+    }
+  }
   const totals = useMemo(() => {
     let income = 0;
     let expense = 0;
-
     transactions.forEach((t) => {
       if (t.type === "income") income += Number(t.amount);
       else expense += Number(t.amount);
@@ -121,18 +126,6 @@ export default function Dashboard() {
     if (!budget) return false;
     return totals.expense > budget;
   }, [budget, totals.expense]);
-
-  /* ----------------------------------------------------------
-      🗑️ DELETE HANDLER
-  ---------------------------------------------------------- */
-  async function handleDelete(id) {
-    try {
-      await deleteDoc(doc(db, "transactions", id));
-    } catch (error) {
-      console.error("🔥 Delete error:", error);
-      alert("Failed to delete transaction.");
-    }
-  }
 
   /* ----------------------------------------------------------
       UI
