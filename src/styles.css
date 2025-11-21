@@ -1,3 +1,9 @@
+/* ===========================================================
+   CASH PILOT CUSTOM STYLES
+   Contributor: Seun
+   Notes: Added comments for clarity and modern fintech layout adjustments
+=========================================================== */
+
 @import "tailwindcss";
 html, body, #root {
   height: 100%;

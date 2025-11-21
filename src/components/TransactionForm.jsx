@@ -1,3 +1,4 @@
+// React + Firebase imports
 import React, { useEffect, useState } from 'react'
 import { 
   collection, 
@@ -9,6 +10,7 @@ import {
 import { db } from '../firebase'
 import { useAuth } from '../contexts/AuthContext'
 
+// Default state for a new transaction
 const defaultState = {
   label: "",
   type: 'expense',
@@ -18,10 +20,15 @@ const defaultState = {
   note: '',
 }
 
+// Component to add or edit a transaction
 export default function TransactionForm({ editTransaction, clearEdit }) {
+  // Local form state
   const [form, setForm] = useState(defaultState)
+  
+  // Current logged-in user from Auth context
   const { currentUser } = useAuth()
 
+  // Populate form if editing an existing transaction
   useEffect(() => {
     if (editTransaction) {
       const formattedDate =
@@ -38,19 +45,25 @@ export default function TransactionForm({ editTransaction, clearEdit }) {
         note: editTransaction.note || '',
       })
     } else {
+      // Reset form to default for new transaction
       setForm(defaultState)
     }
   }, [editTransaction])
 
+  // Handle input changes
   function handleChange(e) {
     const { name, value } = e.target
     setForm(prev => ({ ...prev, [name]: value }))
   }
 
-   async function handleSubmit(e) {
+  // Handle form submission (add or update transaction)
+  async function handleSubmit(e) {
     e.preventDefault()
+    
+    // Ensure user is logged in
     if (!currentUser) return alert("User not logged in")
 
+    // Validate required fields
     if (!form.label || !form.amount || !form.category || !form.date) {
       return alert("Fill all required fields")
     }
@@ -59,11 +72,11 @@ export default function TransactionForm({ editTransaction, clearEdit }) {
       const dateValue = new Date(form.date)
 
       if (editTransaction) {
-        // UPDATE
+        // UPDATE existing transaction
         const ref = doc(db, "transactions", editTransaction.id)
 
         await updateDoc(ref, {
-          label: form.label,   // FIXED ✔
+          label: form.label,
           type: form.type,
           amount: Number(form.amount),
           category: form.category,
@@ -73,12 +86,13 @@ export default function TransactionForm({ editTransaction, clearEdit }) {
           updatedAt: serverTimestamp(),
         })
 
+        // Clear edit mode
         clearEdit()
 
       } else {
-        // ADD
+        // ADD new transaction
         await addDoc(collection(db, "transactions"), {
-          label: form.label,   // FIXED ✔
+          label: form.label,
           type: form.type,
           amount: Number(form.amount),
           category: form.category,
@@ -89,9 +103,11 @@ export default function TransactionForm({ editTransaction, clearEdit }) {
         })
       }
 
+      // Reset form after saving
       setForm(defaultState)
 
     } catch (error) {
+      // Log errors for debugging
       console.error("🔥 Transaction error:", error)
       alert("Failed to save transaction.")
     }
@@ -99,10 +115,13 @@ export default function TransactionForm({ editTransaction, clearEdit }) {
 
   return (
      <div className="card">
+      {/* Heading changes based on Add vs Edit */}
       <h3>{editTransaction ? 'Edit Transaction' : 'Add Transaction'}</h3>
 
+      {/* Transaction form */}
       <form className="transaction-form" onSubmit={handleSubmit}>
 
+        {/* Label input */}
         <label>
           Label (Name)
           <input
@@ -114,6 +133,7 @@ export default function TransactionForm({ editTransaction, clearEdit }) {
           />
         </label>
 
+        {/* Type select */}
         <label>
           Type
           <select name="type" value={form.type} onChange={handleChange}>
@@ -122,6 +142,7 @@ export default function TransactionForm({ editTransaction, clearEdit }) {
           </select>
         </label>
 
+        {/* Amount input */}
         <label>
           Amount (₦)
           <input
@@ -134,6 +155,7 @@ export default function TransactionForm({ editTransaction, clearEdit }) {
           />
         </label>
 
+        {/* Category input */}
         <label>
           Category
           <input
@@ -145,6 +167,7 @@ export default function TransactionForm({ editTransaction, clearEdit }) {
           />
         </label>
 
+        {/* Date input */}
         <label>
           Date
           <input
@@ -156,6 +179,7 @@ export default function TransactionForm({ editTransaction, clearEdit }) {
           />
         </label>
 
+        {/* Note input */}
         <label>
           Note
           <input
@@ -167,11 +191,13 @@ export default function TransactionForm({ editTransaction, clearEdit }) {
           />
         </label>
 
+        {/* Form actions */}
         <div className="form-actions">
           <button type="submit">
             {editTransaction ? 'Update' : 'Add'}
           </button>
 
+          {/* Cancel button shown only in edit mode */}
           {editTransaction && (
             <button type="button" onClick={clearEdit}>
               Cancel
