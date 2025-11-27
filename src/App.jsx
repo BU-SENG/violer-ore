@@ -6,6 +6,7 @@ import Register from "./components/auth/Register";
 import ResetPassword from "./components/auth/ResetPassword";
 import Dashboard from "./components/Dashboard";
 import { useLocation } from "react-router-dom";
+import HomePage from "./components/HomePage";
 
 function PrivateRoute({ children }) {
   const { currentUser } = useAuth();
@@ -51,7 +52,8 @@ function AppShell() {
 
       <main className={`app-main ${isAuthPage ? "auth-fullscreen" : ""}`}>
         <Routes>
-          <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route path="/" element={<HomePage/>} />
+          {/* <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ResetPassword />} />
