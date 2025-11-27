@@ -1,0 +1,90 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  
+  border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+  
+  padding: 0.7rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: bold;
+}
+
+.nav-logo {
+  height: 38px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #d1faff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.nav-links a:hover {
+  color: #22ff99;
+  transform: translateY(-2px);
+}
+
+/* User email */
+.user-email {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.btn-outline {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid #22ff99;
+  background: transparent;
+  color: #22ff99;
+  text-decoration: none;
+}
+
+.btn-fill {
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: #22ff99;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.btn-logout {
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: #ff4747;
+  color: white;
+  border: none;
+  cursor: pointer;
+}.navbar {
+  animation: slideDown 0.6s ease forwards;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+/* Toolbar text */
+.navbar h2 {
+  color: #f1f5f9;
+  font-weight: 700;
+}

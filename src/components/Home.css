@@ -1,0 +1,144 @@
+.home-wrapper {
+  min-height: 100vh;
+  background: #0f1116;
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Header */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background: #11151b;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-area img {
+  width: 40px;
+}
+
+.home-header nav a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+.home-header nav a:hover {
+  color: #12f38b;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  padding: 4rem 6rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 500px;
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+
+.hero-content span {
+  color: #12f38b;
+}
+
+.hero-content p {
+  color: #cfcfcf;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-main {
+  background: #12f38b;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.btn-outline {
+  border: 1px solid #12f38b;
+  padding: 10px 20px;
+  border-radius: 30px;
+  color: #12f38b;
+  text-decoration: none;
+}
+
+/* Right Preview */
+.hero-preview .preview-card {
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  width: 300px;
+}
+
+.preview-card h3 {
+  margin-bottom: 15px;
+}
+
+.preview-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.preview-card li {
+  margin-bottom: 10px;
+  color: #12f38b;
+}
+
+/* Features */
+.features {
+  padding: 4rem 6rem;
+  background: #11151b;
+}
+
+.features h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+}
+
+.feature-box {
+  background: #161b22;
+  padding: 20px;
+  border-radius: 15px;
+  transition: 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* Footer */
+.home-footer {
+  text-align: center;
+  padding: 20px;
+  background: #0f1116;
+  color: gray;
+}
