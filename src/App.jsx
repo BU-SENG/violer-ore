@@ -15,6 +15,7 @@ function PrivateRoute({ children }) {
 
 function AppShell() {
   const { currentUser, logout } = useAuth();
+  const location = useLocation();
 
   const isAuthPage =
     location.pathname === "/login" ||
