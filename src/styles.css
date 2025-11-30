@@ -55,142 +55,133 @@ select {
   align-items: stretch;
 }
 
-/* =========================================
-   3. SIDEBAR (A + C HYBRID)
-========================================= */
+/* ------------------------------
+   MODERN FULL-SIZE SIDEBAR BUTTONS
+------------------------------ */
 
 .app-sidebar {
   width: 260px;
-  background: linear-gradient(145deg, #102848f5, #041220f8);
-  border-right: 1px solid rgba(142, 255, 206, 0.15);
+  background: linear-gradient(160deg, #0b1c30, #061426);
+  border-right: 1px solid rgba(142, 255, 206, 0.1);
   backdrop-filter: blur(18px);
-  padding: 22px;
+  padding: 26px 18px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
   position: sticky;
   top: 0;
   height: 100vh;
-  box-shadow: 0 0 25px rgba(6, 214, 160, 0.25);
+  box-shadow: 0 0 30px rgba(4, 200, 150, 0.18);
 }
 
+/* Brand */
 .sidebar-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #e9fff7;
+  letter-spacing: 0.05em;
+  color: #d9fff3;
+  padding-left: 4px;
 }
 
-.sidebar-logo {
-  width: 32px;
-  height: 32px;
-}
-
+/* NAV WRAPPER — pushes links apart evenly */
 .sidebar-nav {
-  margin-top: 14px;
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 16px;
+  flex-grow: 1; /* fills vertical space */
 }
 
+/* FULL-WIDTH TILE BUTTON */
 .sidebar-link {
-  padding: 10px 14px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  border-radius: 999px;
-  color: #a7b7d4;
+  gap: 14px;
+  font-size: 1rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #a7c4e2;
   text-decoration: none;
-  font-size: 0.92rem;
-  transition: 0.2s ease;
+  transition: 0.25s ease;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
 }
 
+/* Icons alignment */
 .sidebar-link span:first-child {
-  width: 20px;
+  width: 22px;
   text-align: center;
+  font-size: 1.2rem;
 }
 
+/* Hover — green glow & subtle lift */
 .sidebar-link:hover {
-  background: #0b513030;
-  color: #e6f8ff;
-  transform: translateX(3px);
+  background: rgba(31, 255, 180, 0.08);
+  transform: translateX(4px) scale(1.02);
+  box-shadow: 0 0 16px rgba(24, 201, 100, 0.25);
+  color: #eafff8;
 }
 
+/* Active */
 .sidebar-link.active {
-  background: linear-gradient(135deg, #18c964, #0ca05e);
-  color: #021812;
-  box-shadow: 0 0 15px rgba(24, 201, 100, 0.45);
+  background: linear-gradient(135deg, #19e27a, #0ca35e);
+  color: #02140d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(24, 201, 100, 0.6);
+  font-weight: 600;
 }
 
+/* FOOTER SECTION */
 .sidebar-footer {
-  margin-top: auto;
+  padding-top: 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* USER PROFILE */
 .sidebar-user {
   display: flex;
-  gap: 10px;
   align-items: center;
+  gap: 14px;
 }
 
 .sidebar-user .avatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  background: linear-gradient(145deg, #18c964, #0ca05e);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1ce389, #0aa95a);
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  color: #021014;
+  color: #02110c;
 }
 
-.sidebar-user .user-meta {
-  font-size: 0.78rem;
-  color: #9eb4cf;
-}
-
-.user-email {
-  display: block;
-  font-size: 0.82rem;
-  color: #e8f6ff;
-}
-
+/* Logout button */
 .sidebar-logout {
+  background: #ff4757;
+  border-radius: 14px;
   border: none;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: #ff4b5c;
+  padding: 12px;
+  text-align: center;
   color: #fff;
-  font-size: 0.85rem;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  transition: 0.25s ease;
 }
 
 .sidebar-logout:hover {
-  background: #ff6b7a;
-  box-shadow: 0 0 16px rgba(255, 107, 122, 0.55);
-  transform: translateY(-1px);
+  background: #ff6b81;
+  box-shadow: 0 0 14px rgba(255, 107, 129, 0.45);
+  transform: translateY(-2px);
 }
 
-/* Mobile sidebar */
-@media (max-width: 900px) {
-  .app-sidebar {
-    position: fixed;
-    width: 230px;
-    z-index: 20;
-    transform: translateX(-100%);
-    transition: 0.3s ease;
-  }
-
-  .app-sidebar.open {
-    transform: translateX(0);
-  }
-}
 
 /* =========================================
    4. MAIN CONTENT + PAGE MORPH
