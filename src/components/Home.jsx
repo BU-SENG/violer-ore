@@ -1,96 +1,72 @@
+// src/components/Home.jsx
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 export default function Home() {
-  const navigate = useNavigate();
-  const { currentUser } = useAuth();
-
-  function handleDashboardClick() {
-    navigate(currentUser ? "/dashboard" : "/login");
-  }
-
   return (
-    <div className="home dark-home">
+    <div className="home-container hero-animated">
 
-      {/* ✅ Shared Navbar */}
-      <Navbar />
+      {/* NAVBAR */}
+      <header className="home-header">
+        <div className="brand">
+          <img src="/assets/cashpilot-logo.png" alt="CashPilot" />
+          <span>CashPilot</span>
+        </div>
 
-      {/* ===== HERO SECTION ===== */}
-      <section className="hero-section">
+        <nav>
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/dashboard" className="nav-link">Dashboard</Link>
+          <Link to="/login" className="nav-link login-btn">Login</Link>
+        </nav>
+      </header>
 
-        <div className="hero-left">
-          <h1>
+      {/* HERO SECTION */}
+      <section className="hero">
+        <div className="hero-text">
+          <h1 className="title-glow">
             Take Control of Your <span>Money</span>
           </h1>
 
-          <p>
-            CashPilot helps you track income, manage spending, set budgets,
-            and visualize your finances — in real time, with simplicity.
+          <p className="fade-in">
+            CashPilot lets you track income, manage spending, set budgets, and visualize your entire financial life — with live insights tailored for clarity.
           </p>
 
-          <div className="hero-actions">
-            <button className="btn-primary" onClick={handleDashboardClick}>
-              {currentUser ? "Go To Dashboard" : "Sign In To Continue"}
-            </button>
-
-            {!currentUser && (
-              <button
-                className="btn-outline"
-                onClick={() => navigate("/register")}
-              >
-                Create Free Account
-              </button>
-            )}
+          <div className="hero-buttons fade-in">
+            <Link to="/dashboard" className="primary">Go To Dashboard</Link>
           </div>
         </div>
 
-        <div className="hero-right">
-          <img src="/assets/cashpilot-small.png" alt="Dashboard preview" />
+        <div className="hero-image">
+          <img src="/assets/cashpilot-logo.png" alt="CashPilot Logo" />
         </div>
       </section>
 
-      {/* ===== FEATURES ===== */}
-      <section className="features-section">
-
-        <div className="feature-box">
+      {/* FEATURE GRID */}
+      <section className="features reveal">
+        <div className="feature-card glass pop">
           <h3>📊 Smart Tracking</h3>
-          <p>
- Log every income and expense in seconds.  
- Updates instantly using Firebase real-time sync.
-          </p>
+          <p>Track all income and expense instantly with real-time Firebase updates.</p>
         </div>
 
-        <div className="feature-box">
+        <div className="feature-card glass pop">
           <h3>💰 Budget Control</h3>
-          <p>
- Set monthly budgets and track spending.  
- Prevent overspending with live balance updates.
-          </p>
+          <p>Set and manage budgets. Never overspend again with intelligent alerts.</p>
         </div>
 
-        <div className="feature-box">
+        <div className="feature-card glass pop">
           <h3>📈 Visual Analysis</h3>
-          <p>
- Interactive charts show your financial flow.  
- Understand where your money really goes.
-          </p>
+          <p>Advanced charts show where your money goes — beautifully and clearly.</p>
         </div>
 
-        <div className="feature-box">
-          <h3>🔐 Secure</h3>
-          <p>
- Firebase authentication with email verification.  
- Your data is private and protected.
-          </p>
+        <div className="feature-card glass pop">
+          <h3>🔒 Secure Data</h3>
+          <p>Protected by Firebase Auth and encrypted storage. Your data is safe.</p>
         </div>
-
       </section>
 
-      {/* ===== FOOTER ===== */}
+      {/* FOOTER */}
       <footer className="home-footer">
-        <p>© {new Date().getFullYear()} CharisCorp. All rights reserved.</p>
+        © 2025 CharisCorp. All rights reserved.
       </footer>
     </div>
   );
