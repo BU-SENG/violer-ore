@@ -58,7 +58,7 @@ export default function Home() {
       {/* FEATURES – match the screenshot text */}
       <section className="features">
         <div className="feature-card">
-          <h3>📗 Smart Tracking</h3>
+          <h3>Smart Tracking</h3>
           <p>
             Log every income and expense in seconds. Updates instantly using
             Firebase real-time sync.
@@ -66,7 +66,7 @@ export default function Home() {
         </div>
 
         <div className="feature-card">
-          <h3>🔥 Budget Control</h3>
+          <h3>Budget Control</h3>
           <p>
             Set monthly budgets and track spending. Prevent overspending with
             live balance updates.
@@ -74,7 +74,7 @@ export default function Home() {
         </div>
 
         <div className="feature-card">
-          <h3>📊 Visual Analysis</h3>
+          <h3>Visual Analysis</h3>
           <p>
             Interactive charts show your financial flow. Understand where your
             money really goes.
@@ -82,7 +82,7 @@ export default function Home() {
         </div>
 
         <div className="feature-card">
-          <h3>🔐 Secure</h3>
+          <h3>Secure</h3>
           <p>
             Firebase authentication with email verification. Your data is
             private and protected.
@@ -91,7 +91,7 @@ export default function Home() {
       </section>
 
       <footer className="home-footer">
-        © {new Date().getFullYear()} CharisCorp. All rights reserved.
+        © {new Date().getFullYear()} Violer Ore. All rights reserved.
       </footer>
     </div>
   );

@@ -1,28 +1,30 @@
 // src/screens/AddTransactionPage.jsx
-import React, { useState } from "react";
+import React from "react";
 import TransactionForm from "../components/TransactionForm";
 
-export default function AddTransactionPage() {
-  const [editTransaction, setEditTransaction] = useState(null);
-
+export default function AddTransactionPage({ editTransaction, clearEdit }) {
   return (
-    <div className="screen-container">
-      <header className="screen-header">
+    <div className="add-page-wrapper">
+
+      {/* HERO BANNER */}
+      <div className="add-hero">
         <h1>Add Transaction</h1>
         <p>
-          Capture new income or expenses with labels, notes and categories so
-          your dashboard stays up to date.
+          Capture income or expenses with labels, notes and categories —
+          everything updates your dashboard instantly.
         </p>
-      </header>
+      </div>
 
-      <section className="screen-body">
-        <div className="card large-card">
+      {/* FULLSCREEN FORM SECTION */}
+      <div className="add-form-section">
+        <div className="add-form-card">
           <TransactionForm
             editTransaction={editTransaction}
-            clearEdit={() => setEditTransaction(null)}
+            clearEdit={clearEdit}
           />
         </div>
-      </section>
+      </div>
+
     </div>
   );
 }

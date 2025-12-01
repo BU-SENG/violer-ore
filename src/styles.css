@@ -1343,3 +1343,226 @@ button:hover {
     padding: 20px;
   }
 }
+/* ============================
+   ADD TRANSACTION – FULL PAGE
+============================= */
+
+.transaction-hero {
+  margin-bottom: 20px;
+  animation: fadeUp 0.7s ease;
+}
+
+.transaction-full-card {
+  width: 100%;
+  padding: 35px;
+  border-radius: 20px;
+
+  background: radial-gradient(
+      circle at top left,
+      rgba(34, 197, 94, 0.18),
+      rgba(8, 20, 38, 0.9)
+    ),
+    rgba(8, 20, 38, 0.7);
+
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7),
+              0 0 20px rgba(34, 197, 94, 0.25);
+
+  border: 1px solid rgba(34, 197, 94, 0.22);
+  animation: scaleIn 0.5s ease-out;
+}
+
+/* Make form use more space */
+.transaction-full-card form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+/* Inputs */
+.transaction-full-card input,
+.transaction-full-card select {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.85);
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  box-shadow: inset 0 0 8px rgba(0, 255, 140, 0.05);
+  transition: 0.25s ease;
+}
+
+.transaction-full-card input:focus,
+.transaction-full-card select:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.45);
+  transform: scale(1.02);
+}
+
+/* Buttons */
+.transaction-full-card button[type="submit"] {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #021f12;
+  padding: 12px 20px;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+  transition: 0.3s ease;
+}
+
+.transaction-full-card button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(16, 185, 129, 0.55);
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 15px;
+}
+
+/* Animations */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+/* ==========================================
+   FULLSCREEN ADD TRANSACTION PAGE
+========================================== */
+
+.add-page-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0;
+  margin: 0;
+
+  animation: fadeUp 0.8s ease;
+}
+
+/* HERO BANNER */
+.add-hero {
+  width: 100%;
+  padding: 40px 50px;
+
+  background: radial-gradient(
+      circle at top left,
+      rgba(34, 197, 94, 0.25),
+      rgba(8, 20, 38, 0.85)
+    );
+
+  border-bottom: 1px solid rgba(34, 197, 94, 0.12);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+.add-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.add-hero p {
+  font-size: 1.05rem;
+  color: #b6c6da;
+  max-width: 700px;
+}
+
+/* FULLSCREEN FORM AREA */
+.add-form-section {
+  width: 100%;
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 40px 50px;
+}
+
+/* THE FULL-WIDTH / FULLSCREEN CARD */
+.add-form-card {
+  width: 100%;
+  max-width: 1400px;
+
+  background: rgba(10, 20, 35, 0.8);
+  backdrop-filter: blur(18px);
+
+  padding: 40px;
+  border-radius: 24px;
+
+  border: 1px solid rgba(34, 197, 94, 0.18);
+  box-shadow: 
+      0 20px 70px rgba(0, 0, 0, 0.65),
+      0 0 25px rgba(34, 197, 94, 0.2);
+
+  animation: scaleIn 0.55s ease-out;
+}
+
+/* Make the form grid full width */
+.add-form-card form.transaction-form {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* Make action buttons full width row */
+.add-form-card .form-actions {
+  grid-column: 1 / -1;
+}
+
+/* Input Styling */
+.add-form-card input,
+.add-form-card select {
+  padding: 16px !important;
+  border-radius: 12px;
+  font-size: 1rem;
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+
+  transition: 0.25s ease;
+}
+
+.add-form-card input:focus,
+.add-form-card select:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.45);
+  transform: scale(1.02);
+}
+
+/* Button Enhancements */
+.add-form-card button[type="submit"] {
+  padding: 14px 22px;
+  font-size: 1.1rem;
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  box-shadow: 0 10px 24px rgba(16, 185, 129, 0.45);
+}
+
+.add-form-card button:hover {
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 16px 38px rgba(16, 185, 129, 0.6);
+}
+
+/* Animations */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
