@@ -36,8 +36,10 @@ firebase init
 firebase deploy
 ```
 
+
 FINANCE TRACKER FIREBASE PROJECT
 TEAM ROLES AND RESPONSIBILITIES
+
 This document outlines the distributed responsibilities and ownership of modules for the Finance Tracker Firebase Application. Each member is assigned a specific set of components, logic, and UI modules based on their contribution.
 
 1. Ladipo Jesuferanmi (22/1580) – Group Leader
