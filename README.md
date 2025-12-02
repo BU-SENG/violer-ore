@@ -87,7 +87,7 @@ Primary Files:
 •	src/contexts/AuthContext.jsx
 •	src/App.jsx (support role)
 
-4. Jaiyesimi Emmanuel Oluwaseun (22/0139)
+4. Kadiri Daniel Eshiotienamhe (22/0003)
 Role: Budget & Transactions UI Developer 
 Responsibilities:
 •	Design and implementation of the Budget Panel and Monthly Income Panel.
@@ -107,8 +107,9 @@ Primary Files:
 •	src/components/TransactionForm.jsx
 •	src/components/TransactionList.jsx
 •	src/styles.css
+•	src/public/assets
 
-5. Jibrin-Paul Esther Eleojo (22/0280)
+6. Jibrin-Paul Esther Eleojo (22/0280)
 Role: Assets & Public Interface Manager
 Responsibilities:
 •	Creation and management of app assets and public icons.
@@ -119,18 +120,14 @@ Primary Files:
 •	public/assets/*
 •	index.html
 
-6. Kadiri Daniel Eshiotienamhe (22/0003)
-Role: Authentication Flow Developer
+6.Jaiyesimi Emmanuel Oluwaseun (22/0139)
+Role: Quality assurance / Testing Lead
 Responsibilities:
-•	Implementation of Login UI and authentication logic.
-•	Firebase Auth integration (sign-in, sign-out).
-•	Support for redirect logic and route protection.
-•	Collaboration with Jessica & Ladipo to maintain AuthContext.
-Primary Files:
-•	src/components/auth/Login.jsx
-•	src/contexts/AuthContext.jsx (shared responsibility)
+•	Conducted comprehensive quality assurance for the entire Cash Pilot app, including User Acceptance Testing (UAT), system testing, unit testing, and link verification testing, to ensure smooth functionality.
+•	Implemented changes and fixes based on testing results with Jibrin Paul Esther and John Jessica, improving app performance and user experience.
+•	Performed testing and modifications in an ad-hoc manner, as no formal documentation existed, ensuring the app met functional requirements.
 
-7. Obiekwe Kaima Alvin (22/0145) 
+8. Obiekwe Kaima Alvin (22/0145) 
 Role: Utilities & Export Developer 
 Responsibilities:
 •	Implementation of export-to-PDF utilities.
@@ -144,7 +141,7 @@ Primary File:
 •	src/utils/exportPdf.js
 •	/LICENSE
 
-8. Odoemenam David Chikelu (22/0292) 
+9. Odoemenam David Chikelu (22/0292) 
 Role: Navigation & Sidebar Layout Developer
 Responsibilities:
 •	Development and refinement of the new animated sidebar.
